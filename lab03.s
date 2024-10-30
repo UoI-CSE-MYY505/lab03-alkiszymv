@@ -99,7 +99,18 @@ outShowRowLoop:
 
 rgb888_to_rgb565:
 # ----------------------------------------
-# Write your code here.
+loop1:
+    beq  a1, zero, done1  # finished?
+    lw   t1, 0(a0)
+    bne  t1, a2, next1
+    add  s0, a0, zero  # keep matching element's address in s0
+next1:  # prepare for next iteration
+    addi a0, a0, 4
+    addi a1, a1, -1
+    j    loop1
+done1:
+    addi a7, zero, 10 
+    ecall
 # You may move the "return" instruction (jalr zero, ra, 0).
     jalr zero, ra, 0
 
